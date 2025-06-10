@@ -2,7 +2,7 @@ package com.example.collection_box.entity;
 
 import java.math.BigDecimal;
 
-public abstract class Event {
+public class Event {
     private String name;
     private BigDecimal amount;
     private String currency;

@@ -1,7 +1,6 @@
 package com.example.collection_box.entity;
 
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 
 @Entity
