@@ -16,29 +16,24 @@ public class CollectionBox {
 
     private boolean empty;
     private BigDecimal amount;
-    private String currency;
 
     protected CollectionBox(){
         this.empty = true;
         this.amount = BigDecimal.ZERO;
     }
 
-    public CollectionBox(String currency){
-        this();
-        this.currency = currency;
+    public Long getID(){
+        return id;
     }
 
     public Event getEvent(){
         return event;
     }
 
-    public boolean getStatus(){
+    public boolean isEmpty(){
         return empty;
     }
     public BigDecimal getAmount(){
         return amount;
-    }
-    public Long getID(){
-        return id;
     }
 }
