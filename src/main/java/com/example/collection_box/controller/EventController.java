@@ -2,6 +2,7 @@ package com.example.collection_box.controller;
 
 import com.example.collection_box.entity.Event;
 import com.example.collection_box.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/events")
 public class EventController {
+
+    @Autowired
     private final EventService eventService;
 
     public EventController(EventService eventService){

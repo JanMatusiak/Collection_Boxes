@@ -2,6 +2,7 @@ package com.example.collection_box.controller;
 
 import com.example.collection_box.entity.CollectionBox;
 import com.example.collection_box.service.CollectionBoxService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping ("/boxes")
 public class CollectionBoxController {
+
+    @Autowired
     private final CollectionBoxService boxService;
 
     public CollectionBoxController(CollectionBoxService boxService){
