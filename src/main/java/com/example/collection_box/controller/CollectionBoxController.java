@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -36,6 +37,20 @@ public class CollectionBoxController {
 
         CollectionBox update = boxService.assignToEvent(boxID, eventID);
         return ResponseEntity.ok(update);
+    }
+
+    @PostMapping("/{id}/money")
+    public ResponseEntity<CollectionBox> addMoney(@PathVariable("id") Long boxID,
+                                                  @RequestParam("amount") BigDecimal amount,
+                                                  @RequestParam("currency") String currency){
+        CollectionBox update = boxService.addMoney(boxID, amount, currency);
+        return ResponseEntity.ok(update);
+    }
+
+    @PostMapping("/{id}/empty")
+    public ResponseEntity<Void> empty(@PathVariable("id") Long boxID){
+        boxService.empty(boxID);
+        return ResponseEntity.noContent().build();
     }
 
 }

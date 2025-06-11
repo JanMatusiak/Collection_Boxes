@@ -56,7 +56,7 @@ public class CollectionBox {
         if (this.assigned) {
             throw new IllegalStateException("Box already assigned");
         }
-        this.event     = event;
-        this.assigned  = true;
+        this.event = event;
+        this.assigned = true;
     }
 }
