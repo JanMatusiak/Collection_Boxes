@@ -28,7 +28,7 @@ public class CollectionBox {
         empty = getAmount().equals(BigDecimal.ZERO);
     }
 
-    public Long getID(){
+    public Long getId(){
         return id;
     }
 

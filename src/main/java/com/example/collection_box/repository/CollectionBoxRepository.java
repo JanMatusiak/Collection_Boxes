@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CollectionBoxRepository extends JpaRepository<CollectionBox, Long> {
-    List<CollectionBox> findByEmpty(boolean empty);
+    List<CollectionBox> findBoxesByEmptyTrue();
+
 }

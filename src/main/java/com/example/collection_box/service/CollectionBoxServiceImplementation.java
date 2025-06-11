@@ -29,7 +29,7 @@ public class CollectionBoxServiceImplementation implements CollectionBoxService 
     @Override
     public List<CollectionBox> listBoxes(boolean onlyEmpty) {
         if(onlyEmpty){
-            return boxRepo.findByEmpty(true);
+            return boxRepo.findBoxesByEmptyTrue();
         }
         return boxRepo.findAll();
     }
@@ -39,15 +39,12 @@ public class CollectionBoxServiceImplementation implements CollectionBoxService 
     public CollectionBox addMoney(Long boxID, BigDecimal amount, String currency){
         CollectionBox box = boxRepo.findById(boxID)
                 .orElseThrow(() -> new RuntimeException("No such box: " + boxID));
-        if(box.isEmpty()){
+        if(!box.isAssigned()){
             throw new IllegalStateException("Box is unassigned");
         } // Here fetch conversions from the internet
         BigDecimal rate = BigDecimal.ONE;
         BigDecimal converted = amount.multiply(rate);
         box.addAmount(converted);
-        Event event = box.getEvent();
-        event.addAmount(converted);
-        eventRepo.save(event);
         return boxRepo.save(box);
     }
 

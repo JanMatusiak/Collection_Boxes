@@ -18,8 +18,8 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<Event> createEvent(@RequestParam String name,
-                                             @RequestParam String currency){
+    public ResponseEntity<Event> createEvent(@RequestParam("name") String name,
+                                             @RequestParam("currency") String currency){
         Event event = eventService.createEvent(name, currency);
         return ResponseEntity.status(HttpStatus.CREATED).body(event);
     }
@@ -30,8 +30,8 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Event> getEventByID(@PathVariable Long eventID){
+    @PostMapping("/{eventId}")
+    public ResponseEntity<Event> getEventByID(@PathVariable("eventId") Long eventID){
         Event event = eventService.getEventByID(eventID);
         return ResponseEntity.ok(event);
     }

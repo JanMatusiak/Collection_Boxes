@@ -31,24 +31,24 @@ public class CollectionBoxController {
         return ResponseEntity.ok(boxes);
     }
 
-    @PostMapping
-    public ResponseEntity<CollectionBox> assignToEvent(@PathVariable("id") Long boxID,
-                                                       @RequestParam("event") Long eventID){
+    @PostMapping("/{boxId}/assign")
+    public ResponseEntity<CollectionBox> assignToEvent(@PathVariable("boxId") Long boxID,
+                                                       @RequestParam("eventId") Long eventID){
 
         CollectionBox update = boxService.assignToEvent(boxID, eventID);
         return ResponseEntity.ok(update);
     }
 
-    @PostMapping("/{id}/money")
-    public ResponseEntity<CollectionBox> addMoney(@PathVariable("id") Long boxID,
+    @PostMapping("/{boxId}/money")
+    public ResponseEntity<CollectionBox> addMoney(@PathVariable("boxId") Long boxID,
                                                   @RequestParam("amount") BigDecimal amount,
                                                   @RequestParam("currency") String currency){
         CollectionBox update = boxService.addMoney(boxID, amount, currency);
         return ResponseEntity.ok(update);
     }
 
-    @PostMapping("/{id}/empty")
-    public ResponseEntity<Void> empty(@PathVariable("id") Long boxID){
+    @PostMapping("/{boxId}/empty")
+    public ResponseEntity<Void> empty(@PathVariable("boxId") Long boxID){
         boxService.empty(boxID);
         return ResponseEntity.noContent().build();
     }
