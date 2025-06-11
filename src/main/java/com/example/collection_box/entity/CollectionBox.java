@@ -14,11 +14,18 @@ public class CollectionBox {
     private Event event;
 
     private boolean empty;
+    private boolean assigned;
     private BigDecimal amount;
 
-    protected CollectionBox(){
+    public CollectionBox(){
         this.empty = true;
+        this.assigned = false;
         this.amount = BigDecimal.ZERO;
+    }
+
+    public void addAmount(BigDecimal money){
+        setAmount(getAmount().add(money));
+        empty = getAmount().equals(BigDecimal.ZERO);
     }
 
     public Long getID(){
@@ -32,7 +39,21 @@ public class CollectionBox {
     public boolean isEmpty(){
         return empty;
     }
+
+    public boolean isAssigned(){
+        return assigned;
+    }
+
     public BigDecimal getAmount(){
         return amount;
+    }
+
+    public void setAmount(BigDecimal money){
+        this.amount = money;
+    }
+
+    public void assign(Event newEvent){
+        this.event = newEvent;
+        assigned = true;
     }
 }
