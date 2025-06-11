@@ -52,8 +52,11 @@ public class CollectionBox {
         this.amount = money;
     }
 
-    public void assign(Event newEvent){
-        this.event = newEvent;
-        assigned = true;
+    public void assignTo(Event event) {
+        if (this.assigned) {
+            throw new IllegalStateException("Box already assigned");
+        }
+        this.event     = event;
+        this.assigned  = true;
     }
 }

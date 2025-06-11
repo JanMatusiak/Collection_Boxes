@@ -52,13 +52,16 @@ public class CollectionBoxServiceImplementation implements CollectionBoxService 
     }
 
     @Override
-    public CollectionBox assignToEvent(Long boxID, Event event){
+    public CollectionBox assignToEvent(Long boxID, Long eventID){
         CollectionBox box = boxRepo.findById(boxID)
                 .orElseThrow(() -> new RuntimeException("No such box: " + boxID));
         if(box.isAssigned()){
             throw new IllegalStateException("Box is already assigned");
         }
-        box.assign(event);
+
+        Event event = eventRepo.findById(eventID)
+                .orElseThrow(() -> new RuntimeException("No such box: " + boxID));
+        box.assignTo(event);
         return boxRepo.save(box);
     }
 

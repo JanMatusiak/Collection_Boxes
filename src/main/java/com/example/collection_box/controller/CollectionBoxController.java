@@ -13,9 +13,8 @@ import java.util.List;
 public class CollectionBoxController {
     private final CollectionBoxService boxService;
 
-    public CollectionBoxController(CollectionBoxService boxService, BoxMapper boxMapper){
+    public CollectionBoxController(CollectionBoxService boxService){
         this.boxService = boxService;
-        this.boxMapper = boxMapper;
     }
 
     @PostMapping
@@ -30,4 +29,13 @@ public class CollectionBoxController {
         List<CollectionBox> boxes = boxService.listBoxes(onlyEmpty);
         return ResponseEntity.ok(boxes);
     }
+
+    @PostMapping
+    public ResponseEntity<CollectionBox> assignToEvent(@PathVariable("id") Long boxID,
+                                                       @RequestParam("event") Long eventID){
+
+        CollectionBox update = boxService.assignToEvent(boxID, eventID);
+        return ResponseEntity.ok(update);
+    }
+
 }
